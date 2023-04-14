@@ -22,16 +22,16 @@ public class FortuneDaoImpl implements FortuneDao {
 	}
 
 	@Override
-	public void addFortune(Fortunes theFortune) {
+	public Integer save(Fortunes theFortune) {
 		
 		Session addFortuneSession = entityManager.unwrap(Session.class);
 		
-		addFortuneSession.merge(theFortune);
+		return addFortuneSession.merge(theFortune).getId();
 		
 	}
 
 	@Override
-	public List<Fortunes> fetchAllFortunes() {
+	public List<Fortunes> findAll() {
 		Session getAllFortuneSession = entityManager.unwrap(Session.class);
 		Query<Fortunes> theQuery = getAllFortuneSession.createQuery("from Fortunes", Fortunes.class);
 		

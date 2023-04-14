@@ -6,8 +6,8 @@ import com.fastturtle.fortuneService.entity.Fortunes;
 
 public interface FortuneDao {
 
-	public void addFortune(Fortunes theFortune);
+	public Integer save(Fortunes theFortune);
 	
-	public List<Fortunes> fetchAllFortunes();
+	public List<Fortunes> findAll();
 
 }

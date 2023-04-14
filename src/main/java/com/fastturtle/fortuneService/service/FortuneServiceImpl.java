@@ -21,16 +21,16 @@ public class FortuneServiceImpl implements FortuneService{
 
 	@Override
 	@Transactional
-	public void addFortune(Fortunes theFortune) {
+	public Integer save(Fortunes theFortune) {
 		
-		fortuneDao.addFortune(theFortune);
+		return fortuneDao.save(theFortune);
 	}
 
 	@Override
 	@Transactional
-	public List<Fortunes> fetchAllFortunes() {
+	public List<Fortunes> findAll() {
 		
-		return fortuneDao.fetchAllFortunes();
+		return fortuneDao.findAll();
 	}
 
 }

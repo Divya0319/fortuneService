@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,6 +17,7 @@ import com.fastturtle.fortuneService.entity.Fortunes;
 import com.fastturtle.fortuneService.service.FortuneService;
 
 @RestController
+@RequestMapping("/api")
 public class FortuneRestController {
 	
 	private FortuneService theFortuneService;
@@ -27,17 +29,18 @@ public class FortuneRestController {
 		r = new Random();
 	}
 	
-	@PostMapping("/api/fortunes") 
+	@PostMapping("/fortunes") 
 	public Fortunes createNewFortune(@RequestBody Fortunes fortune){
 		
 		fortune.setId(0);
-		theFortuneService.addFortune(fortune);
+		int id = theFortuneService.save(fortune);
+		fortune.setId(id);
 		return fortune;
 	}
 	
-	@GetMapping("/api/fortunes") 
+	@GetMapping("/fortunes") 
 	public List<Fortunes> getAllFortunes(@RequestParam("random") Optional<Boolean> random) {
-		List<Fortunes> fortunes = theFortuneService.fetchAllFortunes();
+		List<Fortunes> fortunes = theFortuneService.findAll();
 		
 		if(fortunes.size() == 0) {
 			Fortunes theFortune = new Fortunes(0, "No fortunes available");
@@ -54,9 +57,7 @@ public class FortuneRestController {
 				return randomFortunes;
 			}
 		}
-		
-		
-		
+
 		return fortunes;
 		
 	}	
