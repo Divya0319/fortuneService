@@ -18,7 +18,7 @@ public class Fortune {
 		
 	}
 
-	public Fortune(String content) {
+	public Fortune(int id, String content) {
 		this.content = content;
 	}
 
