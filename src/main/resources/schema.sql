@@ -1,0 +1,11 @@
+CREATE DATABASE IF NOT EXISTS fortune_dir;
+
+USE fortune_dir;
+
+DROP TABLE IF EXISTS fortunes;
+
+CREATE TABLE fortunes(
+  id INTEGER NOT NULL AUTO_INCREMENT,
+  content VARCHAR(45) DEFAULT NULL,
+  PRIMARY KEY (id)
+);
