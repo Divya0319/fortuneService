@@ -5,11 +5,13 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import com.fastturtle.fortuneService.entity.Fortune;
+import com.fastturtle.fortuneService.entity.Fortunes;
 
 import jakarta.persistence.EntityManager;
 
+@Repository
 public class FortuneDaoImpl implements FortuneDao {
 	
 	private EntityManager entityManager;
@@ -20,7 +22,7 @@ public class FortuneDaoImpl implements FortuneDao {
 	}
 
 	@Override
-	public void addFortune(Fortune theFortune) {
+	public void addFortune(Fortunes theFortune) {
 		
 		Session addFortuneSession = entityManager.unwrap(Session.class);
 		
@@ -29,11 +31,11 @@ public class FortuneDaoImpl implements FortuneDao {
 	}
 
 	@Override
-	public List<Fortune> fetchAllFortunes() {
+	public List<Fortunes> fetchAllFortunes() {
 		Session getAllFortuneSession = entityManager.unwrap(Session.class);
-		Query<Fortune> theQuery = getAllFortuneSession.createQuery("from Fortune", Fortune.class);
+		Query<Fortunes> theQuery = getAllFortuneSession.createQuery("from Fortunes", Fortunes.class);
 		
-		List<Fortune> fortunes = theQuery.getResultList();
+		List<Fortunes> fortunes = theQuery.getResultList();
 		return fortunes;
 	}
 

@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Fortune {
+public class Fortunes {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -14,11 +14,12 @@ public class Fortune {
 	
 	private String content;
 	
-	public Fortune() {
+	public Fortunes() {
 		
 	}
 
-	public Fortune(int id, String content) {
+	public Fortunes(int id, String content) {
+		this.id = id;
 		this.content = content;
 	}
 

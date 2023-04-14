@@ -1,6 +1,7 @@
 package com.fastturtle.fortuneService.rest;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fastturtle.fortuneService.entity.Fortune;
+import com.fastturtle.fortuneService.entity.Fortunes;
 import com.fastturtle.fortuneService.service.FortuneService;
 
 @RestController
@@ -23,11 +24,10 @@ public class FortuneRestController {
 	@Autowired
 	public FortuneRestController(FortuneService theFortuneService) {
 		this.theFortuneService = theFortuneService;
-		r = new Random();
 	}
 	
 	@PostMapping("/api/fortunes") 
-	public Fortune createNewFortune(@RequestBody Fortune fortune){
+	public Fortunes createNewFortune(@RequestBody Fortunes fortune){
 		
 		fortune.setId(0);
 		theFortuneService.addFortune(fortune);
@@ -35,32 +35,29 @@ public class FortuneRestController {
 	}
 	
 	@GetMapping("/api/fortunes") 
-	public List<Fortune> getAllFortunes() {
-		List<Fortune> fortunes = theFortuneService.fetchAllFortunes();
+	public List<Fortunes> getAllFortunes(@RequestParam("random") Optional<Boolean> random) {
+		List<Fortunes> fortunes = theFortuneService.fetchAllFortunes();
 		
 		if(fortunes.size() == 0) {
-			Fortune theFortune = new Fortune(0, "No fortunes available");
-			List<Fortune> noFortunes = new ArrayList<>();
+			Fortunes theFortune = new Fortunes(0, "No fortunes available");
+			List<Fortunes> noFortunes = new ArrayList<>();
 			noFortunes.add(theFortune);
 			return noFortunes;
+		} else {
+			if(random.isPresent()) {
+				r = new Random();
+				Fortunes randomFortune = fortunes.get(r.nextInt(fortunes.size()));
+				
+				List<Fortunes> randomFortunes = new ArrayList<>();
+				randomFortunes.add(randomFortune);
+				return randomFortunes;
+			}
 		}
+		
+		
 		
 		return fortunes;
 		
-	}
-	
-	@GetMapping("/api/fortunes") 
-	public Fortune getRandomFortunes(@RequestParam("random") boolean random) {
-		List<Fortune> fortunes = theFortuneService.fetchAllFortunes();
-		
-		if(fortunes.size() == 0) {
-			return new Fortune(0, "No fortunes available");
-		}
-		
-		Fortune randomFortune = fortunes.get(r.nextInt());
-		
-		return randomFortune;
-		
-	}
+	}	
 
 }
