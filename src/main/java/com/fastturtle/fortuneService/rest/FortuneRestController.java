@@ -24,6 +24,7 @@ public class FortuneRestController {
 	@Autowired
 	public FortuneRestController(FortuneService theFortuneService) {
 		this.theFortuneService = theFortuneService;
+		r = new Random();
 	}
 	
 	@PostMapping("/api/fortunes") 
@@ -44,9 +45,9 @@ public class FortuneRestController {
 			noFortunes.add(theFortune);
 			return noFortunes;
 		} else {
-			if(random.isPresent()) {
-				r = new Random();
+			if(random.isPresent() && random.get() == true) {
 				Fortunes randomFortune = fortunes.get(r.nextInt(fortunes.size()));
+				randomFortune.setId(null);
 				
 				List<Fortunes> randomFortunes = new ArrayList<>();
 				randomFortunes.add(randomFortune);
