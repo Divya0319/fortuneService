@@ -9,8 +9,8 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.fastturtle</groupId>
-	<artifactId>fortuneService</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<artifactId>fortune-service</artifactId>
+	<version>1.0.0-MYSQL</version>
 	<name>fortuneService</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
@@ -57,6 +57,12 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+                	<image>
+                    	<name>nikoleye/${project.artifactId}:${project.version}</name>
+                	</image>
+                <pullPolicy>IF_NOT_PRESENT</pullPolicy>
+            </configuration>
 			</plugin>
 		</plugins>
 	</build>
