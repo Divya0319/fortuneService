@@ -1,5 +1,5 @@
 # Fortune Service
-A Spring Boot Project which provides a random fortune from a list of available fortunes.    
+A Spring Boot application which provides a random fortune from a list of available fortunes.    
 You can also add new fortunes to its fortune database by making POST request on it.
 
 ### Following are the mappings available in this REST API.
