@@ -3,4 +3,16 @@ INSERT INTO fortunes(content) VALUES
 ('Better luck next time'),
 ('Go ahead, get dirty!'),
 ('Mera jhaadu churaya saala!'),
-('Kar har maidaan fateh!');
+('You have win 10000 Rs!'),
+('Don''t listen to all those movie critics!'),
+('You will fall in a pit today'),
+('Merryweather fleets here bro!'),
+('Don''t belive everything you read'),
+('Look before you leap'),
+('Believe in yourself'),
+('Press F to pay respect'),
+('Surviving is winning'),
+('Just do it!'),
+('Cut in line to get the ticket'),
+('Park your vehicle in no parking'),
+('Take 3 steps while taking stairs');
