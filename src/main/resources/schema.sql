@@ -1,6 +1,6 @@
---CREATE DATABASE IF NOT EXISTS fortune_dir;
+CREATE DATABASE IF NOT EXISTS fortune_dir;
 
---USE fortune_dir;
+USE fortune_dir;
 
 DROP TABLE IF EXISTS fortunes;
 
