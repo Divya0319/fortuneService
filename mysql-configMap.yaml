@@ -4,4 +4,5 @@ metadata:
   name : db-config
 data:
   host : mysql
-  dbName: fortune_dir
+  dbNameForFortunes: fortune_dir
+  dbNameForEmp: employee_dir
