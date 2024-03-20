@@ -39,7 +39,7 @@ spec:
               valueFrom :
                 configMapKeyRef :
                   name : db-config
-                  key :  dbNameForFortunes
+                  key :  dbNameForFortune
 
             - name: DB_USERNAME  # Setting Database username from Secret
               valueFrom :
